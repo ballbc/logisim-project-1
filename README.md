@@ -31,7 +31,7 @@ The circuit design was originally created in Logisim Evolution, then adapted to 
 
 ---
 
-## Boolean Wlgebra
+## Boolean Algebra
 
 ### Hex Display Logic
 
