@@ -22,7 +22,7 @@ The circuit design was originally created in Logisim Evolution, then adapted to 
 | 0111  | 0 | 1 | 1 | 1 | 1110000 | 1 | 1 | 1 | 0 | 0 | 0 | 0 | 7               | 7           |
 | 1000  | 1 | 0 | 0 | 0 | 1111111 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 8               | 8           |
 | 1001  | 1 | 0 | 0 | 1 | 1110011 | 1 | 1 | 1 | 0 | 0 | 1 | 1 | 9               | 9           |
-| 1010  | 1 | 0 | 1 | 0 | 1110111 | 1 | 1 | 1 | 0 | 1 | 1 | 1 | X               | A           |
+| 1010  | 1 | 0 | 1 | 0 | 1110111 | 1 | 1 | 1 | 0 | 1 | 1 | 1 | X               | W           |
 | 1011  | 1 | 0 | 1 | 1 | 0011111 | 0 | 0 | 1 | 1 | 1 | 1 | 1 | X               | b           |
 | 1100  | 1 | 1 | 0 | 0 | 1001110 | 1 | 0 | 0 | 1 | 1 | 1 | 0 | X               | C           |
 | 1101  | 1 | 1 | 0 | 1 | 0111101 | 0 | 1 | 1 | 1 | 1 | 0 | 1 | X               | d           |
@@ -31,30 +31,33 @@ The circuit design was originally created in Logisim Evolution, then adapted to 
 
 ---
 
-## Boolean Algebra
+## Boolean Wlgebra
 
 ### Hex Display Logic
 
 The boolean algebra for the hex display is unsimplified SOP form and the logic gates are also unsimplified, with each pin's logic being their respective combination of inputs running into and gates whose output runs into or gates for the final pin's output
 
-a = B'D' + A'C + BC + AD' + A'BD + AB'C'
-b = A'B' + B'D' + A'C'D' + A'CD + AC'D
-c = A'C' + A'D + A'B + C'D + AB'
-d = AC' + A'B'D' + B'CD + BC'D + BCD'
-e = AB + AC + B'D' + CD'
-f = AB' + AC + BD' C'D' + A'BC'
+- a = X'Z' + W'Y + XY + WZ' + W'XZ + WX'Y'
+- b = W'X' + X'Z' + W'Y'Z' + W'YZ + WY'Z
+- c = W'Y' + W'Z + W'X + Y'Z + WX'
+- d = WY' + W'X'Z' + X'YZ + XY'Z + XYZ'
+- e = WX + WY + X'Z' + YZ'
+- f = WX' + WY + XZ' Y'Z' + W'XY'
 
 ### Decimal Display Logic (included even though the logic was already done in the hex display)
 
 The boolean algebra for the decimal display is in a hand-simplified form, done out of boredom and curiosity and included as a bonus. The algebra was "simplified" down to use as little logic gates as possible, but is definitely imperfect and really doesn't make a whole ton of sense.
 
-a = w+xz+x'z'+y
-b = x'+y'z'+yz
-c = x+y'+z
-d = x'y'z'+w'(y xor xz)
-e = z'(x'+y)
-f = w+xy'+xz'+y'z'
-g = w+xy'+x'y+yz'
+- a = W + XZ + X'Z' + Y
+- b = X' + Y'Z' + YZ
+- c = X + Y' + Z
+- d = Z'Y'Z'+ W'(Y ⊕ XZ)
+- e = Z'(X' + Y)
+- f = W + XY' + XZ' + Y'Z'
+- g = W + XY' + X'Y + YZ'
+
+### Quirks
+For some reason my hacky fix for the hex counter in Logisim Evolution made it update on the falling edge of the clock. No difference in the logic's functionality, just some weird quirk in my imperfect conversion. 
 
 ---
 
@@ -62,3 +65,4 @@ g = w+xy'+x'y+yz'
 - Nia: Hex Logic Solving + Conversion to SOP Form, General Collaboration + Support
 - Joshua: Group Communication, General Collaboration + Support
 - Patrick Watkins: General Collaboration + Support
+
